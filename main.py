@@ -16,20 +16,12 @@ bot.remove_command('help')
 async def on_connect():
 	print(f"Connected - {bot.user}")
 
-@bot.event
-async def on_message(message):
-	for b in main['bl']:
-		if b in message.content.lower():
-			if message.author.id not in main['users']:
-				await message.delete()
-	await bot.process_commands(message)
-
 # Help
 @bot.command()
 async def help(ctx, category=None):
 	
 	if category == None:
-		embed = discord.Embed(title='Help', description=f'{prefix}help <category>', color=main['cols'][-1])
+		embed = discord.Embed(title='Help', description=f'{prefix}help <category>', color=0x920505)
 		embed.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 
 		embed.add_field(name='Please choose a category', value='support\nmisc', inline=False)
@@ -37,7 +29,7 @@ async def help(ctx, category=None):
 		await ctx.send(embed=embed)
 	
 	elif category == 'misc':
-		embed = discord.Embed(title='Miscellaneous', color=main['cols'][-1])
+		embed = discord.Embed(title='Miscellaneous', color=0x920505)
 		embed.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 		misG = {'echo <message>': 'Echo a message',	'rps <rock(r)/paper(p)/scissors(s)>': 'Play rock paper scissors with me!', 'toss <optional prediction Heads/Tails>': 'Flip a coin', 'rolldie <optional prediction 1-6>': 'Roll a die', 'si': 'Shows guild info', 'membercount': 'Shows guild\'s member count', 'donate': 'SkidLamer\'s Donation info.', 'invite': 'Invite the bot', "spoil <message>": "Returns a raw message with every character enclosed with ||"}
 		for k, v in misG.items(): embed.add_field(name=f'{prefix}{k}', value=f'{v}', inline=False)
@@ -45,7 +37,7 @@ async def help(ctx, category=None):
 		await ctx.send(embed=embed)
 	
 	elif category == 'support':
-		embed = discord.Embed(title='Support', color=main['cols'][-1])
+		embed = discord.Embed(title='Support', color=0x920505)
 		embed.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 		supG = {'ts': 'Troubleshooting guide', 'ip': 'IP-Ban bypass guide', 'kr': 'KR-Farming guide', 'vpn': 'Lists renowned VPNs', 'info': 'Cheat-terms\' glossary'}
 		for k, v in supG.items(): embed.add_field(name=f"{prefix}{k}", value=f'{v}', inline=False)
@@ -53,7 +45,7 @@ async def help(ctx, category=None):
 		await ctx.send(embed=embed)
 
 	else:
-		await ctx.send(embed=discord.Embed(title='Error', color=main['cols'][-1], description='Unknown category'))
+		await ctx.send(embed=discord.Embed(title='Error', color=0x920505, description='Unknown category'))
 
 # Misc Commands
 ## echo, rolldie, toss, rps, members, si, donate, invite, spoil
@@ -61,15 +53,15 @@ async def help(ctx, category=None):
 async def echo(ctx, message):
 	if message:
 		if ctx.author == bot.user:
-      await ctx.send(f"||{"||||".join('bruh')}||")
+			await ctx.send(f"||{'||||'.join('bruh')}||")
 
 		else:
 			await ctx.send(message)
 		
-    await ctx.message.delete()
+		await ctx.message.delete()
 	
-  else:
-		await ctx.send(embed=discord.Embed(title='Error', description=f'Usage - {prefix}echo <message>', color=main['cols'][-1]))
+	else:
+		await ctx.send(embed=discord.Embed(title='Error', description=f'Usage - {prefix}echo <message>', color=0x920505))
 
 @bot.command()
 async def rolldie(ctx, pdt=None):
@@ -104,7 +96,7 @@ async def toss(ctx, pdt=None):
 @bot.command()
 async def rps(ctx, ch=None):
 	if not ch:
-		await ctx.send(embed=discord.Embed(title='Error', description=f'Usage - {prefix}rps <rock[r]/paper[p]/scissors[s]>', color=main['cols'][-1]))
+		await ctx.send(embed=discord.Embed(title='Error', description=f'Usage - {prefix}rps <rock[r]/paper[p]/scissors[s]>', color=0x920505))
 	else:
 		if choice(['rock', 'paper', 'scissors']) == 'rock':
 			if str(ch).lower().startswith('r'):
@@ -133,11 +125,11 @@ async def rps(ctx, ch=None):
 
 @bot.command()
 async def members(ctx):
-	await ctx.send(embed=discord.Embed(title=ctx.guild, description=f'{ctx.guild.member_count} members!', color=main['cols'][-1]))
+	await ctx.send(embed=discord.Embed(title=ctx.guild, description=f'{ctx.guild.member_count} members!', color=0x920505))
 
 @bot.command()
 async def si(ctx):
-	embed = discord.Embed(title='Server Info', color=main['cols'][-1])
+	embed = discord.Embed(title='Server Info', color=0x920505)
 	embed.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 	embed.set_footer(text=f"Guild ID: {ctx.guild.id}")
 	embed.add_field(name='Owner', value=f'{ctx.guild.owner.mention}', inline=True)
@@ -178,7 +170,7 @@ async def spoil(ctx, *, message):
 ## ip, kr, ts, info, vpn
 @bot.command()
 async def ip(ctx):
-	embed = discord.Embed(title=":hammer: IP-Ban Bypass Methods :open_mouth:", description="Guide to Bypass IP Ban `Connection Banned 0x1`\nChange VPN in case of `Connection Banned 0x2`", color = main['cols'][-1])
+	embed = discord.Embed(title=":hammer: IP-Ban Bypass Methods :open_mouth:", description="Guide to Bypass IP Ban `Connection Banned 0x1`\nChange VPN in case of `Connection Banned 0x2`", color = 0x920505)
 	embed.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 	embed.add_field(name="`1` Unplug your router for some (5-10) minutes", value="Works **only** with *Dynamic* IPs.", inline=False)
 	embed.add_field(name="`2` Use a VPN", value=f"There are free VPNs out in the residence, which may be\n slower, have time limits on connection and other cons.\nYou can get them from the web store. Use `{prefix}vpn` for a list of VPNs", inline=False)
@@ -189,7 +181,7 @@ async def ip(ctx):
 
 @bot.command()
 async def kr(ctx):
-	embed = discord.Embed(title=":money_with_wings: KR-Farming Methods :money_with_wings:", color=main['cols'][-1])
+	embed = discord.Embed(title=":money_with_wings: KR-Farming Methods :money_with_wings:", color=0x920505)
 	embed.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 	embed.add_field(name="`1` Enabling Challenge Mode ||Level 30+||", value="Increase the KR you earn by **1.5 times**!\nBut, your HP will fall by **50%** *oeuf*", inline=False)
 	embed.add_field(name="`2` Free Spins", value="You get a sweet chance to try your luck by\nusing the **Free** Spin for watching an *AD*\n***every hour*** after completing a match.", inline=False)
@@ -202,7 +194,7 @@ async def kr(ctx):
 async def ts(ctx):
 	embed = discord.Embed(title="Troubleshooting",
 						  description="Troubleshooting Guide",
-						  color = main['cols'][-1])
+						  color = 0x920505)
 	embed.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 	embed.add_field(name="`1` Showing Discord invite / Update Prompt",
 					value="Update the script. Either wait for update or ask\nothers to check if it doesn't work.",
@@ -221,7 +213,7 @@ async def ts(ctx):
 	
 @bot.command()
 async def info(ctx, page=1):
-	embed = discord.Embed(title="Info", color = main['cols'][-1])
+	embed = discord.Embed(title="Info", color = 0x920505)
 	embed.set_author(name=ctx.guild, icon_url=ctx.guild.icon_url)
 	if page == 1:
 		cheG = {"Aim range": "[0, 1000, 10] Set above 0 to make the aimbot pick enemies only at the selected range.", "Aim offset": "[-4, 1, 0.1] The lower it is, the lower the aimbot will shoot (0=head, -4=body).", "Aim noise": "[0, 2, 0.005] The higher it is, the lower is the aimbot accuracy.", "Supersilent aim": "Only works with quickscope and silent aim, makes it almost invisible that you're looking at somebody when you're shooting at him.", "Aim at AIs": "Makes the aimbot shoot at NPCs.", "FOV check": "Makes you only shoot at enemies that are in your field of view. Prevents 180 flicks."}
@@ -252,7 +244,7 @@ async def info(ctx, page=1):
 
 @bot.command()
 async def vpn(ctx):
-	embed = discord.Embed(title="List of VPNs", description="Renowned VPNs", color = main['cols'][-1])
+	embed = discord.Embed(title="List of VPNs", description="Renowned VPNs", color = 0x920505)
 	vpns = {"WindScribe"	 : "https://windscribe.com/",
 			"Proton"		 : "https://protonvpn.com/",
 			"HideMe"		 : "https://hide.me/",
