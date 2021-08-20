@@ -248,13 +248,13 @@ async def vpn(ctx):
 	vpns = {"WindScribe"	 : "https://windscribe.com/",
 			"Proton"		 : "https://protonvpn.com/",
 			"HideMe"		 : "https://hide.me/",
-			"Setup"		     : "https://setupvpn.com/",
+			"Setup"		         : "https://setupvpn.com/",
 			"VeePN"			 : "https://veepn.com/",
 			"Earth"			 : "https://earthvpn.com/",
 			"OneClick"		 : "https://vpnoneclick.com/",
 			"ZenMate"		 : "https://zenmate.com/",
-			"HotSpot Shield" : "https://www.hotspotshield.com/",
-			"TunnelBear"	 : "https://www.tunnelbear.com/",
+			"HotSpot Shield"         : "https://www.hotspotshield.com/",
+			"TunnelBear"	         : "https://www.tunnelbear.com/",
 			"SurfShark"		 : "https://surfshark.com/"}
 	for k, v in vpns.items(): embed.add_field(name=k, value=v, inline=True)
 	embed.set_footer(text="Join us! https://skidlamer.github.io/wp")
