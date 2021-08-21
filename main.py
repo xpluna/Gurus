@@ -164,7 +164,7 @@ async def spoil(ctx, *, message):
 	embed.set_footer(text=ctx.author)
 	embed.add_field(name="Result", value="||"+"||||".join(message)+"||", inline=False)
 	embed.add_field(name="Raw", value="```||"+"||||".join(message)+"||```")
-	await ctx.send(embed=embed)
+	await ctx.author.send(embed=embed)
 
 # Support Commands
 ## ip, kr, ts, info, vpn
